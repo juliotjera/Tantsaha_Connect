@@ -1,0 +1,21 @@
+{
+  "name": "Tantsaha Connect",
+  "short_name": "Tantsaha",
+  "description": "Toetrandro, fanairana, rakitsoratra ary torohevitra ho an'ny tantsaha malagasy.",
+  "lang": "mg",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f5f1",
+  "theme_color": "#1d4a33",
+  "icons": [
+    { "src": "/icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Hanoratra", "short_name": "Hanoratra", "url": "/journal/vaovao", "icons": [{ "src": "/icones/icone-192.png", "sizes": "192x192" }] },
+    { "name": "Toetrandro", "short_name": "Toetrandro", "url": "/meteo", "icons": [{ "src": "/icones/icone-192.png", "sizes": "192x192" }] }
+  ]
+}

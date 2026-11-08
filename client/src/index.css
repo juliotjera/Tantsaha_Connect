@@ -1,0 +1,1024 @@
+/* =========================================================
+   Tantsaha Connect : styles
+   Pensé pour des smartphones basiques utilisés dehors :
+   fond clair et fort contraste (lisible au soleil), gros textes,
+   grandes zones à toucher (≥ 48 px), navigation au pouce.
+   ========================================================= */
+
+/* Chiffres : Atkinson Hyperlegible barre le zéro (« 3Ø mm »), ce qui surprend ;
+   les chiffres viennent de la police du téléphone (Roboto sur Android, Segoe UI sur Windows).
+   Sans elle, les chiffres d'Atkinson restent utilisés. */
+@font-face {
+  font-family: 'Chiffres';
+  src: local('Roboto'), local('Roboto-Regular'), local('Segoe UI'), local('SegoeUI'), local('Helvetica Neue'), local('Arial');
+  font-weight: 100 549;
+  unicode-range: U+0030-0039;
+}
+
+@font-face {
+  font-family: 'Chiffres';
+  src: local('Roboto Bold'), local('Roboto-Bold'), local('Segoe UI Semibold'), local('SegoeUI-Semibold'), local('Helvetica Neue Bold'), local('Arial Bold'), local('Arial-BoldMT');
+  font-weight: 550 900;
+  unicode-range: U+0030-0039;
+}
+
+:root {
+  /* couleurs : une seule couleur d'interface, le vert des rizières (actions, sélection) ;
+     l'ocre de la terre pour la récolte et la vigilance ; le rouge réservé au danger ;
+     le bleu seulement pour la donnée « pluie ». Fond gris-vert : moins éblouissant que le blanc. */
+  --fond: #f1f3ee;
+  --fond-2: #e6e9e2;
+  --surface: #ffffff;
+  --texte: #18241c;
+  --texte-doux: #4b574e;
+  --texte-pale: #5a665d;      /* 6:1 sur blanc, 5,4:1 sur le fond */
+  --bordure: #e2e6df;         /* filets entre les lignes d'une liste, seulement */
+  --bordure-forte: #c5ccc3;
+  --marque: #1f5c37;          /* vert profond : la marque, les actions principales */
+  --marque-texte: #1f5c37;    /* le même vert, pour du texte (éclairci en mode sombre) */
+  --vert: #1f5c37;
+  --vert-fonce: #17472a;
+  --vert-clair: #eaf1ec;
+  --vert-texte: #1f5c37;
+  --danger: #b42318;          /* rouge : réservé au danger / à l'interdiction */
+  --vigilance: #9a5a12;       /* ocre : à surveiller (5,4:1 sur blanc) */
+  --bleu-texte: #1f5c37;
+  --bleu-clair: #eaf1ec;
+  --brun-texte: #1f5c37;
+  --neutre: #e8ebe5;          /* boutons secondaires, rail des sélecteurs */
+  --neutre-survol: #dde1da;
+  --neutre-doux: #f0f2ed;     /* fond des pictogrammes */
+  --piste: #e2e6df;           /* fond des barres d'avancement */
+  --pluie: #1a5fc0;           /* gouttes et millimètres de pluie (6:1 sur blanc) */
+  --froid: #4a86c8;           /* barre de température : de la nuit fraîche… */
+  --chaud: #e08a1e;           /* …à l'après-midi chaud */
+  --couleur: var(--marque);   /* couleur par défaut des composants (plus de couleur par rubrique) */
+  --semis: #2b7a4b;           /* almanach : mois de semis */
+  --recolte: #d6a54a;         /* almanach : récolte prévue (grain mûr) */
+  --recolte-bord: #9a7430;
+  --saison-pluies: #cfe1b8;   /* fahavaratra */
+  --saison-seche: #e9d9b8;    /* ririnina */
+  --encre-part: 100%;
+  --encre-vers: black;
+  color-scheme: light;
+
+  /* formes : deux arrondis (petits éléments, surfaces) ; pas de contours :
+     les surfaces se détachent du fond par une ombre très douce, les éléments
+     flottants (navigation, bouton d'ajout, annonces) par une ombre plus marquée */
+  --rayon-s: 12px;
+  --rayon: 20px;
+  --rayon-l: 24px;
+  --ombre-1: 0 1px 2px rgba(24, 36, 28, 0.06);
+  --ombre: 0 1px 2px rgba(24, 36, 28, 0.05), 0 2px 10px -2px rgba(24, 36, 28, 0.07);
+  --ombre-2: 0 10px 30px -10px rgba(24, 36, 28, 0.32);
+  /* texte : une échelle de 7 tailles (rapport ≈ 1,15) et deux graisses, 450 et 650 */
+  --taille-xs: 0.72rem;
+  --taille-s: 0.82rem;
+  --taille-m: 0.94rem;
+  --taille-base: 1rem;
+  --taille-l: 1.18rem;
+  --taille-xl: 1.41rem;
+  --taille-xxl: 1.76rem;
+
+  /* titres et grands chiffres : Bricolage Grotesque, l'allure des enseignes peintes des marchés ;
+     les textes courants restent en Atkinson Hyperlegible, la plus lisible */
+  --police-titre: 'Bricolage Grotesque Variable', 'Atkinson Hyperlegible Next Variable', system-ui, sans-serif;
+  --courbes: color-mix(in srgb, #1f5c37 15%, transparent); /* courbes de niveau des terrasses */
+
+  --hauteur-entete: 64px;
+  --hauteur-navigation: 72px;
+  --largeur-max: 560px;
+
+  /* espacements : grille de 4 px (4, 8, 12, 16, 20, 24, 32, 40, 48) ; 2 px pour les détails fins */
+
+  /* mouvements : une seule courbe (départ vif, arrivée douce) et deux durées ;
+     réponses aux gestes de la personne, jamais d'animation gratuite */
+  --courbe: cubic-bezier(0.16, 1, 0.3, 1);
+  --duree-courte: 160ms;      /* appui, survol, focus */
+  --duree: 320ms;             /* ouverture, apparition */
+  --transition: var(--duree-courte) var(--courbe);
+
+  /* ombre de la barre de navigation (au-dessus du contenu) */
+  --ombre-navigation: 0 -1px 0 var(--bordure), 0 -10px 28px -18px rgba(24, 36, 28, 0.35);
+
+  font-family: 'Chiffres', 'Atkinson Hyperlegible Next Variable', system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--texte);
+  background: var(--fond);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+}
+
+/* « Fikirana » : texte agrandi pour ceux qui voient mal (toutes les tailles sont en rem) */
+:root[data-taille='grand'] {
+  font-size: 21px;
+}
+
+h1,
+h2,
+p {
+  text-wrap: pretty;
+}
+
+button,
+a {
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+/* « encre » : la couleur de la rubrique ou de la culture, assombrie pour le texte
+   (les teintes claires comme le jaune du maïs n'atteignent pas 4,5:1 sur blanc) */
+* {
+  --encre: color-mix(in srgb, var(--couleur, var(--vert)) var(--encre-part), var(--encre-vers));
+}
+
+/* Mode sombre : seulement si la personne le choisit dans « Fikirana ».
+   Le mode clair reste celui par défaut : il se lit mieux en plein soleil. */
+:root[data-theme='sombre'] {
+  --fond: #111411;
+  --fond-2: #1b1f1b;
+  --surface: #1a1f1a;
+  --texte: #e9eee7;
+  --texte-doux: #bcc5b8;
+  --texte-pale: #a6b0a2;
+  --bordure: #2f3b31;
+  --vert-fonce: #a9d8b6;
+  --vert-clair: #1d2e22;
+  --vert-texte: #8fcca0;
+  --bleu-texte: #8fcca0;
+  --bleu-clair: #1d2e22;
+  --brun-texte: #8fcca0;
+  --marque: #2f7a4b;
+  --marque-texte: #8fcca0;
+  --vert: #2f7a4b;
+  --neutre: #262c27;
+  --neutre-survol: #2e352f;
+  --neutre-doux: #1f2520;
+  --piste: #2a312b;
+  --bordure-forte: #3a433b;
+  --pluie: #8db8f2;
+  --semis: #5fb47c;
+  --recolte: #e0b35c;
+  --recolte-bord: #f0cf8d;
+  --saison-pluies: #33452b;
+  --saison-seche: #4a3f2a;
+  --froid: #6fa3dc;
+  --chaud: #f0a64a;
+  --ombre-1: 0 0 0 1px #263028;
+  --ombre: 0 0 0 1px #263028;
+  --ombre-2: 0 2px 4px rgba(0, 0, 0, 0.4), 0 14px 32px -8px rgba(0, 0, 0, 0.6);
+  --encre-part: 40%;
+  --encre-vers: white;
+  --courbes: color-mix(in srgb, #8fcca0 11%, transparent);
+  color-scheme: dark;
+}
+
+/* Plein soleil : contraste maximal pour lire dehors en pleine lumière.
+   Fond blanc pur, texte noir, contours francs à la place des ombres (invisibles
+   au soleil), textes un peu plus gras, pas de texture décorative. */
+:root[data-theme='soleil'] {
+  --fond: #ffffff;
+  --fond-2: #eef0ec;
+  --surface: #ffffff;
+  --texte: #000000;
+  --texte-doux: #1b241d;
+  --texte-pale: #2a342c;
+  --bordure: #6b746d;
+  --bordure-forte: #1b241d;
+  --marque: #134428;
+  --marque-texte: #134428;
+  --vert: #134428;
+  --vert-fonce: #0d331d;
+  --vert-clair: #dcebe0;
+  --vert-texte: #134428;
+  --vigilance: #7a4200;
+  --danger: #a1150b;
+  --neutre: #e3e6e1;
+  --neutre-survol: #d4d8d2;
+  --neutre-doux: #eef0ec;
+  --piste: #c9cec8;
+  --pluie: #0b4aa3;
+  --courbes: transparent;
+  --ombre-1: 0 0 0 2px #1b241d;
+  --ombre: 0 0 0 2px #1b241d;
+  --ombre-2: 0 0 0 2px #000000, 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme='soleil'] body {
+  font-weight: 550;
+}
+
+/* repère clair pour la navigation au clavier ou au lecteur d'écran */
+:focus-visible {
+  outline: 3px solid var(--texte);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :focus-visible {
+    animation: anneau-focus var(--duree) var(--courbe);
+  }
+}
+
+@keyframes anneau-focus {
+  from {
+    outline-offset: 8px;
+    outline-color: transparent;
+  }
+}
+
+/* ---------- structure de l'application ---------- */
+.application {
+  max-width: var(--largeur-max); /* taille d'un téléphone ; voir la mise en page ordinateur plus bas */
+  min-height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--fond);
+}
+
+.contenu {
+  flex: 1;
+  padding: 16px 16px calc(var(--hauteur-navigation) + 16px);
+}
+
+/* ---------- en-tête ---------- */
+.entete {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: var(--hauteur-entete);
+  padding: 0 12px;
+  background: color-mix(in srgb, var(--fond) 88%, transparent);
+  backdrop-filter: blur(12px);
+  color: var(--texte);
+}
+
+.entete-logo,
+.entete-bouton {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.entete-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.entete-bouton {
+  background: var(--surface);
+  box-shadow: var(--ombre-1);
+  color: var(--texte);
+  text-decoration: none;
+}
+
+.entete-bouton:active {
+  background: var(--neutre-survol);
+  transform: scale(0.94);
+}
+
+.entete-titre {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--taille-xl);
+  font-weight: 650;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entete-titre-icone {
+  display: none;               /* la rubrique en cours est déjà marquée dans la navigation */
+}
+
+.connexion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: none;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: var(--ombre-1);
+  color: var(--marque-texte);
+  font-size: var(--taille-s);
+  font-weight: 650;
+}
+
+.connexion-non {
+  background: var(--neutre);  /* gris : hors ligne, l'application continue de marcher */
+  color: var(--texte-doux);             /* pas de rouge : être hors ligne n'est pas un danger */
+}
+
+/* le mot « Misy / Tsy misy » n'apparaît que sur grand écran */
+.connexion-texte {
+  display: none;
+}
+
+/* ---------- accueil ---------- */
+.accueil {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* photo des rizières : la date, le bonjour et le temps posés sur l'image,
+   comme une couverture ; le voile sombre du bas garantit la lisibilité */
+.bienvenue {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 236px;
+  padding: 20px 20px 20px;
+  border-radius: 22px;
+  background: #4b6b2f;        /* couleur des rizières, le temps que la photo s'affiche */
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.bienvenue-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: recul 1.4s var(--courbe) both; /* un seul mouvement, à l'ouverture */
+}
+
+.bienvenue::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(8, 24, 10, 0) 25%, rgba(8, 24, 10, 0.55) 60%, rgba(8, 24, 10, 0.86) 100%);
+}
+
+@keyframes recul {
+  from {
+    transform: scale(1.08);
+  }
+}
+
+.bienvenue:active {
+  transform: scale(0.985);
+}
+
+.bienvenue-texte {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.bienvenue-date {
+  font-size: var(--taille-m);
+  font-weight: 450;
+  opacity: 0.92;
+}
+
+.bienvenue-salut {
+  font-size: 2rem;
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+}
+
+.bienvenue-lieu {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+/* le temps actuel, en grands chiffres, à droite */
+.bienvenue-meteo {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-end;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.bienvenue-temperature {
+  font-size: 3rem;
+  font-weight: 450;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bienvenue-temps {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+.bienvenue-choisir {
+  flex-direction: row;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1d4a33;
+  font-size: var(--taille-m);
+  font-weight: 650;
+  text-shadow: none;
+}
+
+/* bandeau de l'alerte la plus importante : filet de couleur selon l'état */
+.bandeau-alerte {
+  --couleur: var(--vigilance);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 12px 12px 12px 12px;
+  border-radius: var(--rayon);
+  background: color-mix(in srgb, var(--couleur) 9%, var(--surface));
+  color: var(--texte);
+  text-decoration: none;
+}
+
+/* danger : fond plus marqué et pictogramme plein, pour qu'il ne passe pas inaperçu */
+.bandeau-danger {
+  --couleur: var(--danger);
+  background: color-mix(in srgb, var(--danger) 13%, var(--surface));
+}
+
+.bandeau-danger .bandeau-icone {
+  background: var(--danger);
+  color: #fff;
+}
+
+.bandeau-info {
+  --couleur: var(--vert);
+}
+
+.bandeau-alerte:active {
+  transform: scale(0.985);
+}
+
+.bandeau-icone {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--couleur) 15%, var(--surface));
+  color: color-mix(in srgb, var(--couleur) 88%, black);
+}
+
+.bandeau-texte {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.bandeau-texte strong {
+  font-size: var(--taille-base);
+  font-weight: 650;
+}
+
+.bandeau-texte small {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* ---------- grand pictogramme rond (écrans vides) ---------- */
+.rubrique-icone {
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--couleur) 12%, var(--surface));
+  color: var(--encre);
+}
+
+/* ---------- boutons communs ---------- */
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 24px;
+  border: none;
+  border-radius: var(--rayon-s);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.bouton:active {
+  transform: scale(0.97);
+}
+
+.bouton-plein {
+  width: 100%;
+}
+
+.bouton-neutre {
+  background: var(--neutre);
+  color: var(--texte);
+}
+
+.bouton-valider {
+  min-height: 64px;
+  background: var(--marque);
+  color: #fff;
+  font-size: var(--taille-l);
+}
+
+/* ---------- journal : liste des observations ---------- */
+.journal-liste {
+  margin: 0 0 96px;           /* place pour le bouton « Hanoratra » */
+  padding: 0;
+  list-style: none;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--ombre);
+}
+
+.observation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 76px;
+  padding: 8px 8px 8px 12px;
+}
+
+.observation + .observation {
+  border-top: 1px solid var(--bordure);
+}
+
+.observation-type {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--couleur) 11%, var(--surface));
+  color: var(--encre);
+}
+
+.observation-texte {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.observation-titre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  font-weight: 650;
+  color: var(--texte);
+}
+
+.observation-culture {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--texte-doux);
+  font-weight: 450;
+}
+
+.observation-date {
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+}
+
+.observation-etat {
+  flex: none;
+  color: var(--vigilance);   /* pas encore envoyé : seul état qui demande l'attention */
+}
+
+.observation-supprimer {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texte-pale);
+  cursor: pointer;
+}
+
+.observation-supprimer:active {
+  background: var(--neutre-survol);
+}
+
+.journal-vide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 48px;
+  color: var(--texte);
+}
+
+.journal-vide-texte {
+  margin: 0;
+  font-size: var(--taille-l);
+  font-weight: 650;
+  color: var(--texte-doux);
+}
+
+/* gros bouton d'ajout, au-dessus de la navigation, à portée du pouce */
+.bouton-ajout {
+  position: fixed;
+  right: max(16px, calc(50% - 280px + 16px));
+  bottom: calc(var(--hauteur-navigation) + 16px);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 60px;
+  padding: 0 24px 0 16px;
+  border-radius: 34px;
+  background: var(--marque);
+  color: #fff;
+  font-weight: 650;
+  font-size: var(--taille-l);
+  text-decoration: none;
+  box-shadow: var(--ombre-2);
+}
+
+.bouton-ajout:active {
+  transform: scale(0.96);
+}
+
+/* ---------- nouvelle observation (saisie en étapes) ---------- */
+.saisie {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.etapes {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* une étape : le rond, et son nom dessous */
+.etapes li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 76px;
+}
+
+/* trait entre deux ronds (rond de 40 px centré dans 76 px, 12 px entre les étapes) */
+.etapes li + li::before {
+  content: '';
+  position: absolute;
+  top: 19px;
+  right: calc(100% - 18px);
+  width: 48px;
+  height: 2px;
+  background: var(--bordure-forte);
+}
+
+.etape-nom {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--texte-doux);
+  font-size: var(--taille-xs);
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.etape-nom-active {
+  color: var(--texte);
+}
+
+.puce {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--neutre);
+  color: var(--texte-doux);
+  font: inherit;
+  font-weight: 650;
+}
+
+.puce:not(:disabled) {
+  cursor: pointer;
+}
+
+.puce-faite {
+  background: var(--vert-clair);
+  color: var(--marque-texte);
+}
+
+.puce-active {
+  background: var(--marque);
+  color: #fff;
+}
+
+.saisie-question {
+  margin: 0;
+  font-size: var(--taille-xl);
+  font-weight: 650;
+  text-align: center;
+}
+
+.choix-grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.choix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 120px;
+  padding: 12px 8px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  color: var(--texte);
+  font: inherit;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: var(--ombre);
+  border: none;
+}
+
+.choix:active {
+  transform: scale(0.96);
+}
+
+.choix-large {
+  min-height: 148px;
+  gap: 12px;
+}
+
+.choix-selectionne {
+  background: var(--vert-clair);
+  box-shadow: inset 0 0 0 2px var(--marque);
+}
+
+.choix-icone {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--couleur) 12%, var(--surface));
+  color: var(--encre);
+}
+
+.choix-nom {
+  font-size: var(--taille-base);
+  font-weight: 650;
+  color: var(--texte);
+}
+
+/* choix de la culture : grande photo + nom */
+.choix-culture {
+  gap: 8px;
+  min-height: 0;
+  padding: 8px 8px 12px;
+}
+
+.choix-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--rayon-s);
+  object-fit: cover;
+  background: var(--neutre-doux);
+}
+
+.date-choix {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 12px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.date-bouton {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 68px;
+  height: 68px;
+  border: none;
+  border-radius: 50%;
+  background: var(--neutre);
+  color: var(--texte);
+  cursor: pointer;
+}
+
+.date-bouton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.date-valeur {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  font-size: var(--taille-xl);
+  font-weight: 650;
+  text-align: center;
+}
+
+.resume {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--texte);
+  font-weight: 650;
+}
+
+.resume span + svg {
+  margin-left: 8px;
+}
+
+.succes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 80px;
+  color: var(--vert-texte);
+}
+
+.succes-icone {
+  animation: apparition var(--duree) var(--courbe);
+}
+
+.succes-texte {
+  margin: 0;
+  font-size: var(--taille-xxl);
+  font-weight: 650;
+}
+
+@keyframes apparition {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* ---------- navigation (bas de l'écran sur téléphone) ---------- */
+.navigation {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  max-width: var(--largeur-max);
+  height: calc(var(--hauteur-navigation) + env(safe-area-inset-bottom));
+  padding: 8px 4px env(safe-area-inset-bottom);
+  transform: translateX(-50%);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--ombre-navigation);
+}
+
+.navigation-marque {
+  display: none;              /* visible seulement sur grand écran */
+}
+
+.navigation-lien {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  border-radius: var(--rayon-s);
+  color: var(--texte-doux);
+  text-decoration: none;
+}
+
+/* pastille autour du pictogramme de la rubrique en cours */
+.navigation-icone {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 34px;
+  border-radius: 17px;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.navigation-lien.active {
+  color: var(--marque-texte);
+}
+
+/* pastille au vert de marque autour de la rubrique en cours */
+.navigation-lien.active .navigation-icone {
+  background: var(--vert-clair);
+  color: var(--marque-texte);
+}
+
+.navigation-lien:active .navigation-icone {
+  transform: scale(0.92);
+}
+
+.navigation-nom {
+  max-width: 100%;
+  padding: 0 2px;
+  font-size: var(--taille-xs);
+  font-weight: 650;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* moins d'animations si l'utilisateur l'a demandé */
+@media (prefers-reduced-motion: reduce) {
+  .choix {
+    transition: none;
+  }
+
+  .succes-icone,
+  .bienvenue-photo {
+    animation: none;
+  }
+
+  button,
+  a {
+    transition: none;
+  }
+}

@@ -1,0 +1,3371 @@
+/* =========================================================
+   Styles des rubriques : Météo, Alertes, Conseils, Journal, Bilan,
+   Fikirana, almanach, et des éléments partagés (bouton « Henoy »…).
+   Les couleurs et dimensions communes sont dans index.css.
+   ========================================================= */
+
+.bouton-icone {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 16px;
+  background: var(--neutre);
+  color: var(--texte);
+  cursor: pointer;
+}
+
+.bouton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ---------- bouton « Henoy » (écouter) ---------- */
+.bouton-ecouter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 24px;
+  border: none;
+  border-radius: var(--rayon-s);
+  background: var(--vert-clair);
+  color: var(--marque-texte);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.bouton-ecouter-actif {
+  background: var(--marque);
+  color: #fff;
+}
+
+.bouton-ecouter:disabled {
+  background: var(--neutre);
+  color: var(--texte-pale);
+  cursor: default;
+}
+
+.bouton-ecouter-petit {
+  width: 48px;
+  min-height: 48px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* ---------- météo ---------- */
+.meteo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meteo-lieu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 0 16px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  color: var(--texte);
+  font: inherit;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: var(--ombre);
+  border: none;
+}
+
+.meteo-lieu > span:first-of-type {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meteo-lieu svg,
+.meteo-lieu-changer {
+  color: var(--marque-texte);
+}
+
+/* « Ovay » (changer) : une vraie pastille, qu'on voit comme un bouton */
+.meteo-lieu-changer {
+  padding: 8px 16px;
+  border-radius: 16px;
+  background: var(--vert-clair);
+  font-size: var(--taille-m);
+}
+
+/* carte du temps actuel : couleur du temps qu'il fait (soleil, pluie, nuit…) */
+.meteo-actuel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 20px 20px;
+  border-radius: var(--rayon-l);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+  color: var(--texte);
+  overflow: hidden;
+}
+
+.meteo-actuel-haut {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* pictogramme décoratif à la couleur du temps : soleil ambre, pluie bleue, orage violet */
+.meteo-actuel-icone {
+  flex: none;
+  color: var(--encre);
+}
+
+.meteo-temperature {
+  margin: 0;
+  font-size: 4.2rem;
+  font-weight: 450;
+  line-height: 0.95;
+  letter-spacing: -2px;
+}
+
+.meteo-nom {
+  margin: 8px 0 0;
+  font-size: var(--taille-xl);
+  font-weight: 650;
+}
+
+.meteo-extremes {
+  display: flex;
+  align-items: center;
+  gap: 2px 8px;
+  margin: 4px 0 0;
+  font-weight: 650;
+  color: var(--texte-doux);
+}
+
+.meteo-extremes svg + svg,
+.meteo-extremes svg:nth-of-type(2) {
+  margin-left: 8px;
+}
+
+.meteo-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.meteo-detail {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 12px;
+  border-radius: var(--rayon-s);
+  background: var(--neutre-doux);
+}
+
+.meteo-detail svg {
+  flex: none;
+  color: var(--pluie);
+}
+
+.meteo-detail strong {
+  font-size: var(--taille-base);
+}
+
+.meteo-detail small {
+  margin-left: auto;
+  color: var(--texte-doux);
+  font-weight: 650;
+}
+
+.meteo-jours {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--ombre);
+}
+
+.meteo-jour {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 36px 52px minmax(112px, 1.25fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 62px;
+  padding: 8px 16px;
+}
+
+.meteo-jour + .meteo-jour {
+  border-top: 1px solid var(--bordure);
+}
+
+.meteo-jour-nom {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.meteo-jour-nom small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+  font-weight: 450;
+}
+
+.meteo-jour-icone {
+  color: var(--encre);
+}
+
+/* jour de pluie : goutte et millimètres en bleu ; jour sec : gris pâle */
+.meteo-jour-pluie {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--pluie);
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+.meteo-jour-sec {
+  color: var(--texte-pale);
+  font-weight: 450;
+}
+
+/* plage de température du jour, sur l'échelle de la semaine */
+.meteo-jour-temp {
+  display: grid;
+  grid-template-columns: 30px 1fr 34px;
+  align-items: center;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.meteo-jour-min {
+  color: var(--texte-doux);
+  text-align: right;
+}
+
+.meteo-jour-temp strong {
+  color: var(--texte);
+  font-size: var(--taille-base);
+}
+
+.meteo-plage {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--piste);
+}
+
+.meteo-plage span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 6px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--texte) 55%, var(--surface)); /* sobre : la position dit tout */
+}
+
+/* squelette de chargement */
+.squelette {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.squelette-bloc {
+  display: block;
+  border-radius: var(--rayon-s);
+  background: linear-gradient(90deg, var(--neutre) 25%, var(--neutre-doux) 50%, var(--neutre) 75%);
+  background-size: 200% 100%;
+  animation: reflet 1.3s ease-in-out infinite;
+}
+
+.squelette-carte {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px 12px;
+  padding: 24px 20px 20px;
+  border-radius: var(--rayon-l);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.squelette-colonne {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.squelette-temperature {
+  width: 120px;
+  height: 64px;
+}
+
+.squelette-texte {
+  width: 110px;
+  height: 18px;
+  border-radius: 9px;
+}
+
+.squelette-court {
+  width: 72px;
+}
+
+.squelette-rond {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+}
+
+.squelette-mesure {
+  height: 48px;
+  border-radius: var(--rayon-s);
+}
+
+.squelette-liste {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.squelette-jour {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px minmax(112px, 1.25fr);
+  align-items: center;
+  gap: 16px;
+  min-height: 62px;
+  padding: 8px 16px;
+}
+
+.squelette-jour + .squelette-jour {
+  border-top: 1px solid var(--bordure);
+}
+
+.squelette-picto {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.squelette-barre {
+  height: 10px;
+  border-radius: 5px;
+}
+
+@keyframes reflet {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.meteo-etat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+}
+
+.meteo-etat span {
+  flex: 1;
+}
+
+.meteo-actualiser {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: var(--neutre);
+  color: var(--texte);
+  cursor: pointer;
+}
+
+.tourne {
+  animation: tourner 1s linear infinite;
+}
+
+@keyframes tourner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.meteo-attente {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--texte-doux);
+  font-weight: 650;
+}
+
+.choix-lieu {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.choix-lieu-entete {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.choix-lieu-entete h1,
+.choix-lieu-entete h2 {
+  flex: 1;
+  text-align: left;
+}
+
+.choix-lieu-aide {
+  margin: 0;
+  text-align: center;
+  color: var(--texte-doux);
+}
+
+.choix-lieu-liste {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* les noms longs passent à la ligne au lieu de déborder */
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.choix-lieu-ville {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 56px;
+  padding: 8px 12px;
+  border-radius: var(--rayon-s);
+  background: var(--surface);
+  color: var(--texte);
+  font: inherit;
+  font-size: var(--taille-m);
+  font-weight: 650;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  box-shadow: var(--ombre-1);
+  border: none;
+}
+
+.choix-lieu-ville svg {
+  flex: none;
+  color: var(--marque-texte);
+}
+
+/* ---------- alertes ---------- */
+.alertes-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alerte {
+  --couleur: var(--vigilance);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--rayon);
+  background: color-mix(in srgb, var(--couleur) 5%, var(--surface));
+  box-shadow: var(--ombre);
+}
+
+.alerte-danger {
+  --couleur: var(--danger);   /* rouge : danger uniquement */
+}
+
+.alerte-info {
+  --couleur: var(--vert);     /* vert : simple rappel */
+}
+
+.alertes-calme {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: var(--vert-texte);
+  font-weight: 650;
+}
+
+.alerte-entete {
+  display: flex;
+  gap: 16px;
+}
+
+.alerte-icone {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--couleur) 15%, var(--surface));
+  color: var(--encre);
+}
+
+.alerte-culture {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--texte);
+  box-shadow: var(--ombre-1), 0 0 0 2px var(--surface);
+}
+
+.alerte-texte {
+  min-width: 0;
+}
+
+.alerte-niveau {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  color: var(--encre);
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+.alerte-titre {
+  margin: 2px 0;
+  font-size: var(--taille-l);
+  font-weight: 650;
+}
+
+.alerte-detail {
+  margin: 0;
+  color: var(--texte-doux);
+}
+
+.alerte-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.alerte-actions .bouton-ecouter,
+.alerte-conseil {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* « Henoy » à sa taille, « Inona no atao ? » prend le reste : les deux tiennent sur une ligne */
+.alerte-actions .bouton-ecouter {
+  flex: none;
+  padding: 0 20px;
+}
+
+.alerte-conseil {
+  flex: 1;
+  min-width: 0;
+  padding: 0 16px;
+}
+
+.alertes-rien {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.alertes-rien-icone {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: var(--vert-clair);
+  color: var(--vert-texte);
+}
+
+.alertes-rien-texte {
+  margin: 8px 0 0;
+  font-size: var(--taille-xl);
+  font-weight: 650;
+  color: var(--texte);
+}
+
+.alertes-rien-detail {
+  margin: 0;
+  color: var(--texte-doux);
+}
+
+.alertes-lieu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 16px 16px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  color: var(--texte);
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: var(--ombre);
+}
+
+.alertes-lieu svg {
+  flex: none;
+}
+
+/* ---------- conseils ---------- */
+.filtres {
+  display: flex;
+  gap: 8px;
+  margin: 0 -16px 16px;
+  padding: 2px 16px 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent);
+}
+
+.filtre {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 16px 0 12px;
+  border: none;
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--ombre-1);
+  color: var(--texte);
+  font: inherit;
+  font-size: var(--taille-m);
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filtre svg {
+  width: 22px;
+  height: 22px;
+  color: var(--encre);
+}
+
+/* filtre choisi : plein, au vert de marque */
+.filtre[aria-checked="true"] {
+  background: var(--marque);
+  color: #fff;
+}
+
+.filtre[aria-checked="true"] svg {
+  color: #fff;
+}
+
+.fiches {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fiche {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.fiche-cible {
+  box-shadow: inset 0 0 0 2px var(--marque), var(--ombre);
+}
+
+.fiche-entete {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fiche-icone {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--couleur) 12%, var(--surface));
+  color: var(--encre);
+}
+
+.fiche-titre {
+  margin: 0;
+  font-size: var(--taille-l);
+  color: var(--texte);
+}
+
+.fiche-texte {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---------- journal : « Ny voliko » (cultures en cours) ---------- */
+.voliko {
+  margin-bottom: 20px;
+}
+
+.voliko-titre {
+  margin: 0 0 8px;
+  font-size: var(--taille-base);
+  font-weight: 650;
+  color: var(--texte);
+}
+
+.voliko-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.voly {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.voly-pret {
+  background: color-mix(in srgb, var(--vert) 6%, var(--surface));
+  box-shadow: inset 0 0 0 2px var(--marque);
+}
+
+.voly-photo {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--neutre-doux);
+}
+
+.voly-infos {
+  flex: 1;
+  min-width: 0;
+}
+
+.voly-nom {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-weight: 650;
+  color: var(--texte);
+}
+
+.voly-jours {
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+  font-weight: 650;
+}
+
+.voly-barre {
+  height: 8px;
+  border-radius: 6px;
+  background: var(--piste);
+  overflow: hidden;
+}
+
+.voly-barre span {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: var(--vert);
+}
+
+.voly-pret .voly-barre span {
+  background: var(--vert);
+}
+
+.voly-recolte {
+  margin: 8px 0 0;
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+.voly-pret .voly-recolte {
+  color: var(--vert-texte);
+}
+
+.voly-bouton {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 76px;
+  height: 68px;
+  border: none;
+  border-radius: var(--rayon-s);
+  background: var(--marque);
+  color: #fff;
+  font: inherit;
+  font-size: var(--taille-s);
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.voly-bouton:active {
+  transform: scale(0.96);
+}
+
+/* ---------- bandeau « nouvelle version » ---------- */
+.mise-a-jour {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--hauteur-navigation) + 12px);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: calc(100% - 24px);
+  max-width: 536px;
+  padding: 12px 12px 12px 16px;
+  border-radius: 18px;
+  background: #1d1d1b;
+  color: #fff;
+  font-weight: 650;
+  transform: translateX(-50%);
+  box-shadow: var(--ombre-2);
+}
+
+.mise-a-jour span {
+  flex: 1;
+}
+
+.mise-a-jour .bouton {
+  min-height: 48px;
+  background: var(--vert);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tourne,
+  .squelette-bloc {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   Souris : léger relief au survol (ordinateur)
+   ========================================================= */
+@media (hover: hover) {
+  .choix:hover,
+  .fiche:hover {
+    box-shadow: var(--ombre-2);
+  }
+
+  .navigation-lien:hover .navigation-icone {
+    background: var(--neutre-doux);
+  }
+
+  .bouton:hover,
+  .bouton-ajout:hover,
+  .bandeau-alerte:hover {
+    filter: brightness(1.05);
+  }
+
+  .observation-supprimer:hover,
+  .choix-lieu-ville:hover {
+    background: var(--neutre-survol);
+  }
+}
+
+/* =========================================================
+   Grand écran (ordinateur, tablette en paysage) :
+   navigation en colonne à gauche, contenu plus large
+   ========================================================= */
+@media (min-width: 960px) {
+  :root {
+    --largeur-max: 1240px;
+    --hauteur-navigation: 0px;
+  }
+
+  .application {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'navigation entete'
+      'navigation contenu';
+    gap: 0 28px;
+    padding: 0 24px;
+  }
+
+  .entete {
+    grid-area: entete;
+    height: 88px;
+    background: color-mix(in srgb, var(--fond) 90%, transparent);
+  }
+
+  .entete-titre {
+    font-size: var(--taille-xxl);
+    letter-spacing: -0.6px;
+  }
+
+  /* accueil : le nom de l'application est déjà dans la colonne de navigation */
+  .entete-titre-accueil {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .connexion-texte {
+    display: inline;
+  }
+
+  .connexion {
+    margin-left: auto;          /* à droite, même quand le titre est masqué (accueil) */
+  }
+
+  /* le logo est déjà dans la colonne de navigation */
+  .entete-logo {
+    display: none;
+  }
+
+  .entete {
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .contenu {
+    grid-area: contenu;
+    width: 100%;
+    padding: 4px 0 48px;
+  }
+
+  .navigation {
+    position: sticky;
+    top: 0;
+    left: auto;
+    grid-area: navigation;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: auto;
+    max-width: none;
+    height: 100dvh;
+    padding: 24px 0;
+    transform: none;
+    background: transparent;
+    backdrop-filter: none;
+    border-top: none;
+    box-shadow: none;
+  }
+
+  .navigation-marque {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 8px 24px;
+    color: var(--texte);
+    font-size: var(--taille-l);
+    font-weight: 650;
+  }
+
+  .navigation-lien {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    min-height: 56px;
+    padding: 0 12px;
+    color: var(--texte-doux);
+  }
+
+  .navigation-lien.active {
+    background: var(--surface);
+    box-shadow: var(--ombre);
+  }
+
+  .navigation-lien.active .navigation-icone {
+    background: transparent;
+  }
+
+  .navigation-nom {
+    font-size: var(--taille-base);
+  }
+
+  /* carte d'accueil plus large : plus haute, pour garder l'ampleur du paysage */
+  .bienvenue {
+    min-height: 300px;
+    padding: 20px 24px 24px;
+  }
+
+  .choix-grille,
+  .choix-lieu-liste {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .fiches,
+  .alertes-liste {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .bouton-ajout {
+    right: max(24px, calc((100vw - 1180px) / 2 + 24px));
+    bottom: 28px;
+  }
+
+  .mise-a-jour {
+    left: auto;
+    right: 24px;
+    bottom: 24px;
+    width: 420px;
+    transform: none;
+  }
+
+  .journal-liste {
+    margin-bottom: 40px;
+  }
+}
+
+/* ---------- page « Mombamomba » (à propos et crédits) ---------- */
+.apropos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 68ch;
+}
+
+.apropos h2 {
+  margin: 0;
+  font-size: var(--taille-l);
+}
+
+.apropos p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.credits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--ombre);
+}
+
+.credit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px;
+}
+
+.credit + .credit {
+  border-top: 1px solid var(--bordure);
+}
+
+.credit img {
+  flex: none;
+  width: 64px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.credit p {
+  font-size: var(--taille-m);
+}
+
+.credit a,
+.apropos-autres a {
+  color: var(--vert-fonce);
+  font-weight: 650;
+}
+
+.apropos-autres {
+  margin: 0;
+  padding-left: 1.2em;
+  line-height: 1.6;
+}
+
+/* ---------- en-tête : observations pas encore envoyées ---------- */
+.connexion-attente {
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 11px;
+  background: #1b1a17;        /* dans la pastille blanche de l'en-tête */
+  color: #fff;
+  font-size: var(--taille-xs);
+  font-weight: 650;
+}
+
+/* liens annexes : sur téléphone, en bas de l'accueil ; sur ordinateur, dans la colonne */
+.navigation-annexes {
+  display: none;
+}
+
+/* ---------- annonces (retour après une action, avec « annuler ») ---------- */
+.annonces {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--hauteur-navigation) + 96px); /* au-dessus du bouton « Hanoratra » */
+  z-index: 16;
+  width: calc(100% - 24px);
+  max-width: 536px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.annonce {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 60px;
+  padding: 8px 8px 8px 16px;
+  border-radius: 18px;
+  background: #1d2a1f;
+  color: #fff;
+  box-shadow: var(--ombre-2);
+  pointer-events: auto;
+  animation: annonce var(--duree) var(--courbe);
+}
+
+.annonce > svg {
+  flex: none;
+  color: #8fd18a;
+}
+
+.annonce-texte {
+  flex: 1;
+  min-width: 0;
+  font-weight: 650;
+}
+
+.annonce-annuler {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+@keyframes annonce {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* ---------- saisie : raccourcis de date ---------- */
+.date-raccourcis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.date-raccourci {
+  min-height: 52px;
+  padding: 4px 8px;
+  border-radius: var(--rayon-s);
+  background: var(--surface);
+  color: var(--texte);
+  font: inherit;
+  font-size: var(--taille-m);
+  font-weight: 650;
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--ombre-1);
+}
+
+.date-raccourci[aria-pressed='true'] {
+  background: var(--vert-clair);
+  box-shadow: inset 0 0 0 2px var(--marque);
+  color: var(--vert-fonce);
+}
+
+/* ---------- Fikirana (paramètres) ---------- */
+.fikirana {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 640px;
+}
+
+.fikirana-groupe {
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.fikirana-groupe legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 0 4px;
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+.fikirana-options {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;           /* 2 ou 3 choix côte à côte */
+  gap: 4px;
+  padding: 4px;
+  border-radius: 18px;
+  background: var(--neutre);
+}
+
+.fikirana-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 64px;
+  color: var(--texte);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+}
+
+.fikirana-option[aria-pressed='true'] {
+  background: var(--surface);
+  box-shadow: var(--ombre);
+  color: var(--texte);
+}
+
+.fikirana-apercu {
+  font-size: var(--taille-l);
+  line-height: 1;
+}
+
+.fikirana-apercu-grand {
+  font-size: var(--taille-xxl);
+}
+
+.fikirana-lien {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 12px 16px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  color: var(--texte);
+  text-decoration: none;
+  box-shadow: var(--ombre);
+}
+
+.fikirana-lien > span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.fikirana-lien small {
+  color: var(--texte-doux);
+}
+
+/* ---------- premier lancement : choix de la langue ---------- */
+.premier {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(16, 32, 18, 0.72);
+}
+
+.premier-carte {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px 20px 20px;
+  border-radius: var(--rayon-l);
+  background: var(--surface);
+  text-align: center;
+}
+
+.premier-titre {
+  margin: 0;
+  font-size: var(--taille-xl);
+}
+
+.premier-question {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  color: var(--texte-doux);
+  font-weight: 650;
+}
+
+.premier-choix {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+
+.premier-choix .bouton {
+  min-height: 64px;
+  font-size: var(--taille-l);
+}
+
+/* ---------- transitions entre écrans (View Transitions, navigateurs récents) ----------
+   Fondu court quand on change d'écran ; l'en-tête et la navigation restent fixes. */
+.entete {
+  view-transition-name: entete;
+}
+
+.navigation {
+  view-transition-name: navigation;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 160ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .annonce {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   Responsive : petits téléphones, téléphone couché, tablette
+   ========================================================= */
+
+/* très petit écran (≤ 360 px) : navigation sans étiquettes, sauf l'onglet actif ;
+   ligne météo allégée */
+@media (max-width: 360px) {
+  .navigation-lien:not(.active) .navigation-nom {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .navigation-icone {
+    width: 50px;
+  }
+
+  /* ligne de la semaine : la barre laisse sa place, les deux températures restent */
+  .meteo-jour {
+    grid-template-columns: minmax(0, 1fr) 30px 44px 68px;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .meteo-jour-nom {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .meteo-jour-nom small {
+    display: none;
+  }
+
+  .meteo-jour-temp {
+    grid-template-columns: auto auto;
+    justify-content: end;
+    gap: 8px;
+  }
+
+  .meteo-plage {
+    display: none;
+  }
+
+  .meteo-temperature {
+    font-size: 3.4rem;
+  }
+
+  .meteo-actuel-icone {
+    width: 84px;
+    height: 84px;
+  }
+
+  .meteo-detail {
+    flex-wrap: wrap;
+    gap: 2px 8px;
+    padding: 8px 12px;
+  }
+
+  .meteo-detail strong {
+    white-space: nowrap;
+  }
+
+  .date-raccourci {
+    font-size: var(--taille-s);
+  }
+}
+
+/* téléphone couché : moins de hauteur pour la photo */
+@media (max-height: 500px) and (orientation: landscape) {
+  .bienvenue {
+    min-height: 160px;
+  }
+}
+
+/* tablette (640 à 959 px) : colonne plus large que sur téléphone */
+@media (min-width: 640px) and (max-width: 959px) and (min-height: 501px) {
+  :root {
+    --largeur-max: 760px;
+  }
+
+  .bienvenue {
+    min-height: 280px;
+  }
+
+  .choix-grille,
+  .choix-lieu-liste {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .fiches,
+  .alertes-liste {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .bouton-ajout {
+    right: max(16px, calc(50% - 380px + 16px));
+  }
+
+  .annonces {
+    max-width: 736px;
+  }
+}
+
+/* grand écran : liens annexes dans la colonne de navigation, annonces en bas à droite
+   (après les règles de base ci-dessus, qu'elles remplacent) */
+@media (min-width: 960px) {
+  .navigation-annexes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--bordure);
+  }
+
+  .annonces {
+    right: 24px;
+    bottom: 112px;
+    left: auto;
+    width: 420px;
+    transform: none;
+  }
+}
+
+/* ---------- accès direct au contenu (clavier, lecteur d'écran) ---------- */
+.lien-contenu {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 40;
+  padding: 12px 16px;
+  border-radius: var(--rayon-s);
+  background: var(--texte);
+  color: var(--surface);
+  font-weight: 650;
+  transform: translateY(-200%);
+}
+
+.lien-contenu:focus {
+  transform: none;
+}
+
+.contenu:focus,
+.entete-titre:focus {
+  outline: none;              /* focus déplacé par l'application, pas par la personne */
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- installer l'application ---------- */
+.bouton-installer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 72px;
+  padding: 12px 16px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  color: var(--marque-texte);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--ombre);
+}
+
+.bouton-installer span {
+  display: flex;
+  flex-direction: column;
+}
+
+.bouton-installer small {
+  color: var(--texte-doux);
+  font-weight: 650;
+}
+
+/* ---------- écran de secours (erreur imprévue) ---------- */
+.erreur-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 8px;
+  text-align: center;
+}
+
+.erreur-app h2,
+.erreur-app p {
+  margin: 0;
+}
+
+.erreur-app-icone {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--neutre);
+  color: var(--texte-doux);
+}
+
+/* ---------- journal : lien vers le bilan, écran vide ---------- */
+.lien-bilan {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  margin-bottom: 12px;
+  padding: 0 16px;
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--marque-texte);
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: var(--ombre-1);
+}
+
+.journal-vide-detail {
+  max-width: 32ch;
+  margin: 0;
+  color: var(--texte-doux);
+  text-align: center;
+}
+
+.journal-vide .bouton {
+  text-decoration: none;
+}
+
+/* ---------- bilan (Tatitra) ---------- */
+.bilan {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bilan-entete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bilan-periode {
+  margin: 0;
+  color: var(--texte-doux);
+  font-weight: 650;
+}
+
+.bouton-discret {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 12px;
+  border: none;
+  border-radius: var(--rayon-s);
+  background: var(--neutre);
+  color: var(--texte);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+/* chiffres clés : le total de chaque type */
+.bilan-chiffres {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bilan-chiffre {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0 12px;
+  padding: 12px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.bilan-chiffre-icone {
+  display: grid;
+  grid-row: span 2;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--neutre-doux);
+  color: var(--texte-doux);
+}
+
+.bilan-chiffre strong {
+  font-size: var(--taille-xxl);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.bilan-chiffre span:last-child {
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+/* petits graphiques : un par type, même échelle */
+.bilan-graphiques {
+  display: grid;
+  gap: 12px;
+}
+
+.bilan-graphique {
+  margin: 0;
+  padding: 12px 12px 8px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.bilan-graphique figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin-bottom: 8px;
+}
+
+.bilan-graphique-icone {
+  color: var(--texte-doux);
+}
+
+.bilan-detail {
+  margin-left: auto;
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+.bilan-barres {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  border-bottom: 1px solid var(--bordure); /* ligne de base, discrète */
+}
+
+.bilan-colonne {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  min-width: 0;
+  padding: 0 4px;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: var(--texte-doux);
+  font: inherit;
+  cursor: pointer;
+}
+
+.bilan-colonne[aria-pressed='true'],
+.bilan-colonne:hover {
+  background: var(--neutre-survol);
+}
+
+.bilan-zone {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 84px;
+  padding-top: 20px;          /* place pour la valeur au-dessus de la barre */
+}
+
+.bilan-barre {
+  position: relative;
+  width: min(100%, 26px);
+  min-height: 4px;
+  border-radius: 4px 4px 0 0; /* bout arrondi, pied posé sur la ligne de base */
+  background: var(--marque);
+}
+
+.bilan-valeur {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-bottom: 2px;
+  color: var(--texte);
+  font-size: var(--taille-s);
+  font-weight: 650;
+  transform: translateX(-50%);
+}
+
+.bilan-mois {
+  padding-bottom: 8px;
+  overflow: hidden;
+  font-size: var(--taille-xs);
+  font-weight: 650;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bilan-vide {
+  margin: 0;
+  padding: 24px 8px;
+  color: var(--texte-doux);
+  text-align: center;
+}
+
+.bilan-tableau-cadre {
+  overflow-x: auto;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.bilan-tableau {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.bilan-tableau th,
+.bilan-tableau td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--bordure);
+  text-align: right;
+}
+
+.bilan-tableau th:first-child {
+  text-align: left;
+}
+
+.bilan-tableau thead th {
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+}
+
+@media (min-width: 640px) {
+  .bilan-chiffres {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .bilan-graphiques {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- paramètres : texte d'aide, choix désactivé ---------- */
+.fikirana-aide {
+  margin: 0 4px 12px;
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+}
+
+.fikirana-option:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* premier lancement, étape du lieu : fenêtre plus large et défilante */
+.premier-carte-large {
+  align-items: stretch;
+  max-width: 560px;
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* ---------- almanach de l'année agricole (accueil) ---------- */
+.almanach {
+  padding: 16px 12px 12px;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.almanach-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 2px 12px;
+}
+
+.almanach h2 {
+  margin: 0;
+  font-size: var(--taille-base);
+  font-weight: 650;
+}
+
+.almanach-saison {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+  font-weight: 650;
+}
+
+.almanach-entete .bouton-ecouter-petit {
+  flex: none;                 /* Henoy à droite du titre et de la saison */
+}
+
+.almanach-grille {
+  display: grid;
+  grid-template-columns: minmax(84px, 6.4rem) repeat(var(--colonnes), minmax(0, 1fr));
+  column-gap: 2px;
+  row-gap: 2px;
+  align-items: center;
+}
+
+.almanach-mois {
+  color: var(--texte-pale);
+  font-size: var(--taille-xs);
+  font-weight: 650;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.almanach-mois-actuel {
+  justify-self: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--texte);
+  color: var(--surface);
+  font-weight: 650;
+  line-height: 20px;
+}
+
+/* couleurs des saisons (bande du haut de l'année entière) */
+.almanach-bande-fahavaratra {
+  background: var(--saison-pluies);
+}
+
+.almanach-bande-ririnina {
+  background: var(--saison-seche);
+}
+
+/* une ligne par culture : lien vers ses conseils, même grille que les mois */
+.almanach-ligne {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(84px, 6.4rem) repeat(12, minmax(0, 1fr));
+  column-gap: 2px;
+  align-items: center;
+  min-height: 44px;
+  border-radius: 10px;
+  color: var(--texte);
+  text-decoration: none;
+}
+
+@supports (grid-template-columns: subgrid) {
+  .almanach-ligne {
+    grid-template-columns: subgrid;
+  }
+}
+
+.almanach-ligne:active,
+.almanach-ligne:hover {
+  background: var(--neutre-doux);
+}
+
+.almanach-culture {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding-left: 2px;
+  overflow: hidden;
+  font-size: var(--taille-s);
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.almanach-culture img {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.almanach-legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 12px 2px 0;
+  padding: 0;
+  list-style: none;
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+}
+
+.almanach-legende li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.almanach-cle {
+  position: static;
+  display: inline-block;
+  width: 16px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.almanach-note {
+  margin: 8px 2px 0;
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+}
+
+/* légende en pictogrammes : compréhensible sans lire */
+.almanach-picto {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--texte);
+}
+
+.almanach-picto-semis {
+  background: color-mix(in srgb, var(--semis) 16%, var(--surface));
+  color: var(--semis);
+}
+
+.almanach-picto-recolte {
+  background: color-mix(in srgb, var(--recolte) 22%, var(--surface));
+  color: var(--recolte-bord);
+}
+
+/* ---------- accueil sur grand écran : deux colonnes ---------- */
+@media (min-width: 1100px) {
+  .accueil {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 20px;
+  }
+
+  .accueil > .bienvenue,
+  .accueil > .bandeau-alerte,
+  .accueil > .bouton-installer {
+    grid-column: 1 / -1;
+  }
+
+  .accueil > .noter .noter-choix {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* almanach : abréviation des mois quand la carte est assez large */
+.almanach {
+  container-type: inline-size;
+}
+
+.almanach-abrege {
+  display: none;
+}
+
+@container (min-width: 520px) {
+  .almanach-initiale {
+    display: none;
+  }
+
+  .almanach-abrege {
+    display: inline;
+  }
+
+  /* le mois en cours devient une pastille allongée autour de l'abréviation */
+  .almanach-mois-actuel {
+    width: auto;
+    padding: 0 8px;
+    border-radius: 10px;
+  }
+}
+
+/* ---------- grand écran : météo et journal sur deux colonnes ---------- */
+@media (min-width: 1100px) {
+  .meteo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: start;
+    gap: 20px;
+  }
+
+  .meteo > .meteo-lieu,
+  .meteo > .meteo-etat,
+  .meteo > .meteo-attente {
+    grid-column: 1 / -1;
+  }
+
+  .meteo > .squelette {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: start;
+    gap: 20px;
+  }
+
+  .journal {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    align-items: start;
+    gap: 0 24px;
+  }
+
+  .journal > .lien-bilan {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .journal > .journal-vide {
+    grid-column: 1 / -1;
+  }
+
+  /* sans cultures en cours, la liste prend toute la largeur */
+  .journal > .journal-liste:first-of-type:nth-child(2) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =========================================================
+   Identité visuelle
+   - les courbes de niveau des rizières en terrasses (celles du logo),
+     en texture très légère en haut de chaque écran : l'élément qu'on retient
+   - Bricolage Grotesque pour les titres et les grands chiffres
+   - navigation flottante sur téléphone
+   ========================================================= */
+.application {
+  position: relative;
+  isolation: isolate;
+}
+
+.application::before,
+.premier-carte::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 340px;
+  background: var(--courbes);
+  -webkit-mask: url('/motifs/terrasses.svg') top center / 960px auto no-repeat, linear-gradient(#000 35%, transparent);
+  -webkit-mask-composite: source-in;
+  mask: url('/motifs/terrasses.svg') top center / 960px auto no-repeat, linear-gradient(#000 35%, transparent);
+  mask-composite: intersect;
+  pointer-events: none;
+}
+
+/* titres et grands chiffres */
+.entete-titre,
+.bienvenue-salut,
+.bienvenue-temperature,
+.meteo-temperature,
+.almanach h2,
+.voliko-titre,
+.saisie-question,
+.alerte-titre,
+.fiche-titre,
+.bilan-chiffre strong,
+.premier-titre,
+.succes-texte,
+.apropos h2,
+.journal-vide-texte,
+.alertes-rien-texte {
+  font-family: var(--police-titre);
+  letter-spacing: -0.02em;
+}
+
+.entete-titre {
+  font-weight: 700;
+}
+
+/* accueil : le bonjour en grand, la température en chiffres fins */
+.bienvenue {
+  min-height: 268px;
+  border-radius: 28px;
+}
+
+.bienvenue-salut {
+  font-size: 2.35rem;
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.bienvenue-temperature {
+  font-size: 3.7rem;
+  font-weight: 300;
+  letter-spacing: -0.05em;
+}
+
+/* le lieu dans une pastille de verre dépoli, posée sur la photo */
+.bienvenue-lieu {
+  align-self: flex-start;
+  margin-top: 12px;
+  padding: 4px 12px 4px 8px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-shadow: none;
+}
+
+.meteo-temperature {
+  font-size: 4.8rem;
+  font-weight: 300;
+  letter-spacing: -0.05em;
+}
+
+.voliko-titre,
+.almanach h2 {
+  font-size: var(--taille-l);
+  font-weight: 700;
+}
+
+.saisie-question {
+  font-size: var(--taille-xl);
+  font-weight: 700;
+}
+
+.bilan-chiffre strong {
+  font-weight: 650;
+}
+
+/* téléphone et tablette : navigation flottante, détachée du bord de l'écran */
+@media (max-width: 959px) {
+  :root {
+    --hauteur-navigation: 90px;   /* barre (68 px) et sa marge : réservés en bas des écrans */
+  }
+
+  .navigation {
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    width: calc(100% - 12px);
+    max-width: calc(var(--largeur-max) - 12px);
+    height: 68px;
+    padding: 8px 2px;
+    border-radius: 26px;
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--texte) 7%, transparent), var(--ombre-2); /* barre flottante : filet et ombre portée */
+  }
+
+  .navigation-lien.active .navigation-icone {
+    background: var(--marque);
+    color: #fff;
+  }
+
+  /* les noms des rubriques tiennent entiers dans la barre (« Fandraisana », « Rakitsoratra ») */
+  .navigation-nom {
+    padding: 0;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ordinateur : les courbes remplissent le bas de la colonne de navigation */
+@media (min-width: 960px) {
+  .application::before {
+    display: none;
+  }
+
+  .navigation {
+    isolation: isolate;
+  }
+
+  .navigation::before {
+    content: '';
+    position: absolute;
+    inset: auto -24px 0;
+    z-index: -1;
+    height: 300px;
+    background: var(--courbes);
+    /* fondu en haut et sur les côtés : les courbes s'estompent, sans bord net */
+    -webkit-mask:
+      url('/motifs/terrasses.svg') bottom center / 760px auto no-repeat,
+      linear-gradient(transparent, #000 65%),
+      linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+    -webkit-mask-composite: source-in, source-in;
+    mask:
+      url('/motifs/terrasses.svg') bottom center / 760px auto no-repeat,
+      linear-gradient(transparent, #000 65%),
+      linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+    mask-composite: intersect, intersect;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .navigation,
+  .bienvenue-lieu {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .navigation {
+    background: var(--surface);
+  }
+}
+
+/* ---------- météo heure par heure et bon moment pour traiter ---------- */
+.meteo-heures {
+  padding: 16px 0 16px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.meteo-section-titre {
+  margin: 0 16px 12px;
+  font-family: var(--police-titre);
+  font-size: var(--taille-l);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.heures {
+  display: flex;
+  gap: 2px;
+  margin: 0;
+  padding: 0 12px 4px;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-mask: linear-gradient(90deg, #000 calc(100% - 32px), transparent);
+  mask: linear-gradient(90deg, #000 calc(100% - 32px), transparent);
+}
+
+.heure {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 54px;
+  padding: 8px 0 12px;
+  border-radius: var(--rayon-s);
+  scroll-snap-align: start;
+  font-variant-numeric: tabular-nums;
+}
+
+/* maintenant : une pastille sombre, comme le mois en cours de l'almanach */
+.heure:first-child .heure-nom {
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: var(--texte);
+  color: var(--surface);
+}
+
+.heure-nom {
+  color: var(--texte-doux);
+  font-size: var(--taille-xs);
+  font-weight: 650;
+}
+
+.heure-icone {
+  color: var(--encre);
+}
+
+.heure strong {
+  font-size: var(--taille-base);
+  font-weight: 650;
+}
+
+.heure-pluie {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  min-height: 14px;
+  color: var(--pluie);
+  font-size: var(--taille-xs);
+  font-weight: 650;
+}
+
+/* heures du bon moment pour traiter : un trait vert sous la colonne */
+.heure-traitement::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  left: 4px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--semis);
+}
+
+.traitement {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 12px 0;
+  padding: 12px;
+  border-radius: var(--rayon-s);
+  background: var(--vert-clair);
+  color: var(--texte);
+}
+
+.traitement > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.traitement strong {
+  font-weight: 650;
+}
+
+.traitement-plage {
+  color: var(--marque-texte);
+  font-family: var(--police-titre);
+  font-size: var(--taille-l);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.traitement small {
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+}
+
+.traitement-icone {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--marque-texte);
+}
+
+.traitement-non {
+  background: var(--neutre-doux);
+  color: var(--texte-doux);
+}
+
+.traitement-non .traitement-icone {
+  color: var(--texte-pale);
+}
+
+/* ---------- bouton « Zarao » (partager) ---------- */
+.bouton-partager {
+  display: grid;
+  flex: none;
+  place-items: center;
+  align-self: flex-start;
+  width: 48px;
+  height: 48px;
+  margin-left: auto;
+  border: none;
+  border-radius: 50%;
+  background: var(--neutre);
+  color: var(--texte);
+  cursor: pointer;
+}
+
+.bouton-partager:active {
+  transform: scale(0.94);
+}
+
+.fiche-entete {
+  width: 100%;
+}
+
+/* ordinateur : temps actuel et heures à gauche, semaine à droite */
+@media (min-width: 1100px) {
+  .meteo > .meteo-actuel,
+  .meteo > .meteo-heures {
+    grid-column: 1;
+  }
+
+  .meteo > .meteo-jours {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+  }
+}
+
+/* ---------- petit guide du premier usage ---------- */
+.torolalana {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(16, 32, 18, 0.72);
+}
+
+.torolalana-carte {
+  gap: 12px;
+}
+
+.torolalana-guide {
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+  font-weight: 650;
+}
+
+.torolalana-icone {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--vert-clair);
+  color: var(--marque-texte);
+}
+
+.torolalana-texte {
+  max-width: 34ch;
+  margin: 0;
+  font-size: var(--taille-l);
+  line-height: 1.45;
+}
+
+.torolalana-points {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.torolalana-points li {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bordure-forte);
+  transition: width var(--transition), background-color var(--transition);
+}
+
+.torolalana-points .torolalana-point-actif {
+  width: 24px;
+  background: var(--marque);
+}
+
+.torolalana-actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.torolalana-actions .bouton {
+  flex: 1;
+}
+
+/* ---------- photo d'une observation ---------- */
+.observation-photo {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: var(--rayon-s);
+  overflow: hidden;
+  background: var(--neutre);
+  cursor: pointer;
+}
+
+.observation-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.saisie-photo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.saisie-photo img {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border-radius: var(--rayon-s);
+  object-fit: cover;
+  box-shadow: var(--ombre);
+}
+
+.saisie-photo .bouton {
+  flex: 1;
+}
+
+/* la photo en grand, sur fond sombre */
+.visionneuse {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(8, 14, 10, 0.92);
+}
+
+.visionneuse img {
+  max-width: 100%;
+  max-height: calc(100dvh - 140px);
+  border-radius: var(--rayon-s);
+  object-fit: contain;
+}
+
+.visionneuse-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ---------- paramètres : sauvegarde ---------- */
+.fikirana-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.fikirana-groupe + .bouton-installer,
+.fikirana > .fikirana-lien {
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fikirana > button.fikirana-lien {
+  width: 100%;
+  border: none;
+}
+
+/* ---------- météo : lever et coucher du soleil ---------- */
+.meteo-detail-soleil svg {
+  color: var(--vigilance);
+}
+
+/* ---------- coquille (index.html) : la photo de l'accueil avant le démarrage de React ---------- */
+.coquille {
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+  padding: calc(var(--hauteur-entete) + 16px) 16px 0;
+}
+
+.coquille-photo {
+  display: block;
+  width: 100%;
+  height: 268px;
+  border-radius: 28px;
+  background: #4b6b2f;
+  object-fit: cover;
+}
+
+@media (min-width: 960px) {
+  .coquille {
+    padding: 104px 24px 0 312px; /* à la place de la photo, à droite de la colonne de navigation */
+  }
+
+  .coquille-photo {
+    height: 300px;
+  }
+}
+
+/* ---------- conseils : groupes et fiches avec photo ---------- */
+.fiches-groupe + .fiches-groupe {
+  margin-top: 24px;
+}
+
+.fiches-groupe-titre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 4px 12px;
+  color: var(--texte);
+  font-family: var(--police-titre);
+  font-size: var(--taille-l);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.fiches-groupe-titre svg {
+  color: var(--marque-texte);
+}
+
+.fiche-photo {
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.fiche-image {
+  display: block;
+  width: calc(100% + 32px);
+  height: auto;
+  aspect-ratio: 16 / 7;
+  margin: 0 -16px 4px;
+  object-fit: cover;
+  background: var(--neutre-doux);
+}
+
+/* ---------- météo : bon moment pour traiter ---------- */
+.traitement strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.traitement-jour {
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: var(--marque);
+  color: #fff;
+  font-size: var(--taille-s);
+}
+
+.traitement-plage {
+  font-size: var(--taille-xl);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* sans pluie annoncée, la ligne de la pluie ne laisse pas de vide sous les heures */
+.heure-pluie:empty {
+  display: none;
+}
+
+.heure {
+  padding-bottom: 12px;
+}
+
+/* ---------- almanach simple : ce mois-ci ---------- */
+.almanach-rangee + .almanach-rangee {
+  margin-top: 16px;
+}
+
+.almanach-rangee-titre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 2px 8px;
+  font-size: var(--taille-base);
+  font-weight: 650;
+}
+
+.almanach-voly {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* une culture : sa photo et son nom, un appui ouvre ses conseils (ou le journal) */
+.almanach-puce {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 4px 16px 4px 4px;
+  border-radius: 26px;
+  background: var(--neutre-doux);
+  color: var(--texte);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.almanach-puce:active {
+  transform: scale(0.96);
+}
+
+.almanach-puce img {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.almanach-puce > span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.almanach-puce small {
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+  font-weight: 650;
+}
+
+.almanach-pret {
+  align-self: flex-start;
+  margin-top: 2px;
+  padding: 0 8px;
+  border-radius: 9px;
+  background: var(--marque);
+  color: #fff;
+  font-size: var(--taille-xs);
+}
+
+.almanach-vide {
+  margin: 0 2px;
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+}
+
+/* l'année entière, à la demande */
+.almanach-annee-bouton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 16px;
+  border: none;
+  border-radius: var(--rayon-s);
+  background: var(--neutre);
+  color: var(--texte);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.almanach-annee-bouton[aria-expanded='true'] .almanach-chevron {
+  transform: rotate(180deg);
+}
+
+.almanach-annee {
+  margin-top: 16px;
+}
+
+.almanach-annee-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 2px 12px;
+}
+
+.almanach-annee-entete p {
+  margin: 0;
+  font-weight: 650;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .almanach-chevron {
+    transition: transform var(--transition);
+  }
+}
+
+/* ---------- année entière : barres continues, saisons écrites ---------- */
+.almanach-saison-bande {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 24px;
+  margin: 2px 1px 8px;
+  overflow: hidden;
+  border-radius: 12px;
+  color: var(--texte);
+  font-size: var(--taille-xs);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+/* deux rangées par culture : semis en haut, récolte en dessous */
+.almanach-ligne {
+  grid-template-rows: auto auto;
+  row-gap: 4px;
+  min-height: 56px;
+  padding: 8px 0;
+}
+
+.almanach-culture {
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
+.almanach-culture img {
+  width: 28px;
+  height: 28px;
+}
+
+.almanach-culture > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.almanach-culture small {
+  overflow: hidden;
+  color: var(--texte-doux);
+  font-size: var(--taille-xs);
+  font-weight: 650;
+  text-overflow: ellipsis;
+}
+
+.almanach-barre {
+  grid-row: 1;
+  align-self: end;
+  height: 12px;
+  margin: 0 1px;
+  border-radius: 6px;
+}
+
+.almanach-barre-semis {
+  background: var(--semis);
+}
+
+.almanach-barre-recolte {
+  grid-row: 2;
+  align-self: start;
+  background: var(--recolte);
+  box-shadow: inset 0 0 0 1px var(--recolte-bord);
+}
+
+.almanach-legende .almanach-barre-semis,
+.almanach-legende .almanach-barre-recolte {
+  height: 9px;
+  margin: 0;
+}
+
+.almanach-legende .almanach-cle {
+  align-self: center;
+}
+
+/* =========================================================
+   Corrections de l'analyse complète
+   ========================================================= */
+
+/* ---------- choix du lieu : deux groupes, noms entiers, lieu actuel coché ---------- */
+.choix-lieu-entete .bouton-icone {
+  margin-left: auto;
+  border-radius: 50%;
+}
+
+.choix-lieu-groupe-titre {
+  margin: 8px 4px 8px;
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+.choix-lieu-ville {
+  justify-content: flex-start;
+  min-height: 52px;
+  padding: 8px 16px;
+  font-size: var(--taille-m);
+  overflow-wrap: normal;      /* jamais coupé au milieu d'un mot */
+  hyphens: manual;
+}
+
+.choix-lieu-actuel {
+  background: var(--vert-clair);
+  box-shadow: inset 0 0 0 2px var(--marque);
+  color: var(--vert-fonce);
+}
+
+/* ---------- alertes : partager en haut à droite, sans rétrécir le texte ---------- */
+.alerte {
+  position: relative;
+}
+
+.alerte > .alerte-entete > .bouton-partager {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.alerte-niveau,
+.alerte-titre {
+  padding-right: 52px;
+}
+
+/* rappels : une ligne compacte chacun */
+.alertes-liste + .rappels {
+  margin-top: 24px;
+}
+
+.rappels-titre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 4px 12px;
+  color: var(--texte);
+  font-family: var(--police-titre);
+  font-size: var(--taille-l);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.rappels-titre svg {
+  color: var(--marque-texte);
+}
+
+.rappels-liste {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.rappel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 12px;
+}
+
+.rappel + .rappel {
+  border-top: 1px solid var(--bordure);
+}
+
+.rappel-lien {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 76px;
+  padding: 12px 8px 12px 12px;
+  color: var(--texte);
+  text-decoration: none;
+}
+
+.rappel-icone {
+  --couleur: var(--vert);
+  width: 48px;
+  height: 48px;
+}
+
+.rappel-texte {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.rappel-texte strong {
+  font-weight: 650;
+}
+
+.rappel-texte small {
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+}
+
+.rappel-chevron {
+  flex: none;
+  color: var(--texte-pale);
+}
+
+/* petite pastille de la culture : le pictogramme principal reste visible */
+.rappel-icone .alerte-culture {
+  right: -5px;
+  bottom: -5px;
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- bilan : actions sur la même ligne que la période ---------- */
+.bilan-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.bilan-actions .bouton-partager {
+  margin-left: 0;
+  align-self: center;
+}
+
+/* ---------- hors ligne ---------- */
+.hors-ligne {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-radius: var(--rayon-s);
+  background: var(--neutre);
+  color: var(--texte);
+  font-size: var(--taille-m);
+}
+
+.hors-ligne svg {
+  flex: none;
+  color: var(--texte-doux);
+}
+
+.hors-ligne strong {
+  font-weight: 650;
+}
+
+/* ---------- en-tête : titre tronqué avec points de suspension ---------- */
+.entete-titre-texte {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- accueil : bonjour et température ne se touchent jamais ---------- */
+.bienvenue-texte {
+  flex: 1;
+}
+
+:root[data-taille='grand'] .bienvenue-salut {
+  font-size: 1.9rem;
+}
+
+:root[data-taille='grand'] .bienvenue-temperature {
+  font-size: 2.9rem;
+}
+
+@media (max-width: 360px) {
+  .bienvenue {
+    padding: 16px 16px 20px;
+  }
+
+  .bienvenue-salut {
+    font-size: 1.85rem;
+  }
+
+  .bienvenue-temperature {
+    font-size: 2.8rem;
+  }
+
+  /* barre de navigation : l'onglet actif, seul à montrer son nom, a plus de place */
+  .navigation {
+    display: flex;
+  }
+
+  .navigation-lien {
+    flex: 1;
+  }
+
+  .navigation-lien.active {
+    flex: 1.8;
+  }
+}
+
+/* état vide : titre centré comme le reste */
+.journal-vide-texte {
+  max-width: 30ch;
+  text-align: center;
+}
+
+/* =========================================================
+   Emplacement des composants
+   ========================================================= */
+
+/* ---------- accueil : noter ce qui s'est passé, en un appui ---------- */
+.noter {
+  padding: 16px 12px 12px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.noter-titre {
+  margin: 0 4px 12px;
+  font-family: var(--police-titre);
+  font-size: var(--taille-l);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.noter-choix {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.noter-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 96px;
+  padding: 12px 2px 8px;
+  border-radius: var(--rayon-s);
+  background: var(--neutre-doux);
+  color: var(--texte);
+  font-size: var(--taille-xs);
+  font-weight: 650;
+  text-align: center;
+  text-decoration: none;
+}
+
+.noter-type:active {
+  transform: scale(0.95);
+}
+
+.noter-icone {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--couleur) 13%, var(--surface));
+  color: var(--encre);
+}
+
+@media (hover: hover) {
+  .noter-type:hover {
+    background: var(--neutre);
+  }
+}
+
+/* ---------- en-tête : paramètres en haut à droite (téléphone) ---------- */
+.entete-fikirana {
+  margin-left: 2px;
+}
+
+@media (min-width: 960px) {
+  .entete-fikirana {
+    display: none; /* déjà dans la colonne de navigation */
+  }
+}
+
+/* ---------- journal : un titre par mois ---------- */
+.journal-mois-liste {
+  margin-bottom: 96px; /* place pour le bouton « Hanoratra » */
+}
+
+.journal-mois + .journal-mois {
+  margin-top: 20px;
+}
+
+.journal-mois-titre {
+  margin: 0 4px 8px;
+  color: var(--texte-doux);
+  font-size: var(--taille-m);
+  font-weight: 650;
+}
+
+.journal-mois .journal-liste {
+  margin-bottom: 0;
+}
+
+@media (min-width: 960px) {
+  .journal-mois-liste {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .journal > .journal-mois-liste:nth-child(2) {
+    grid-column: 1 / -1; /* sans cultures en cours, l'historique prend toute la largeur */
+  }
+}
+
+/* ---------- paramètres : liens regroupés dans une seule liste ---------- */
+.fikirana-liens {
+  overflow: hidden;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.fikirana-liens > .fikirana-lien {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fikirana-liens > .fikirana-lien + .fikirana-lien {
+  border-top: 1px solid var(--bordure);
+}
+
+/* accueil (téléphone) : le nom entier de l'application tient à côté des deux boutons */
+.entete-titre-accueil {
+  font-size: var(--taille-l);
+}
+
+@media (min-width: 960px) {
+  /* le bouton « Hanoratra » flotte en bas à droite : la dernière ligne reste visible */
+  .journal-mois-liste {
+    margin-bottom: 112px;
+  }
+}
+
+/* ---------- micro-interactions (réponses aux gestes) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* l'année entière se déplie sous le bouton */
+  .almanach-annee {
+    animation: deplier var(--duree) var(--courbe);
+  }
+
+  /* chaque étape du guide arrive de la droite */
+  .torolalana-etape {
+    animation: etape-suivante var(--duree) var(--courbe);
+  }
+
+  /* chaque étape de la saisie apparaît en douceur */
+  .saisie-question {
+    animation: deplier var(--duree) var(--courbe);
+  }
+}
+
+@keyframes deplier {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes etape-suivante {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+}
+
+.torolalana-etape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}

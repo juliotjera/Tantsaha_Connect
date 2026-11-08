@@ -1,0 +1,19 @@
+# Déploiement sur Render (Blueprint) : un seul service web, l'API sert aussi l'interface.
+# Render > New > Blueprint > choisir ce dépôt ; seule DATABASE_URL est à saisir (adresse Neon).
+services:
+  - type: web
+    name: tantsaha-connect
+    runtime: node
+    plan: free
+    region: frankfurt          # le plus proche de Madagascar parmi les régions de Render
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/sante
+    autoDeploy: true           # chaque « git push » sur master redéploie
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "24"
+      - key: DATABASE_URL     # PostgreSQL Neon (gratuit) : à coller dans Render, jamais dans le dépôt
+        sync: false

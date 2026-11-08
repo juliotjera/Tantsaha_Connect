@@ -1,0 +1,22 @@
+# dépendances (réinstallées avec npm install)
+node_modules/
+
+# variables secrètes (mots de passe de la base de données…)
+.env
+
+# fichiers générés
+dist/
+build/
+
+# journaux
+*.log
+
+# base PGlite de développement (recréée automatiquement)
+.donnees*/
+
+# éditeurs et système
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.local

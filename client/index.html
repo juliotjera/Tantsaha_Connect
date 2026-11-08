@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="mg">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icones/apple-touch-icon.png" />
+    <meta name="theme-color" content="#1d4a33" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Tantsaha" />
+    <meta name="description" content="Tantsaha Connect : toetrandro, fanairana, rakitsoratra ary torohevitra ho an'ny tantsaha malagasy." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Tantsaha Connect</title>
+  </head>
+  <body>
+    <!-- coquille : la photo de l'accueil (celle de la saison, choisie par couverture.js) s'affiche avant React ;
+         React remplace ce contenu dès qu'il démarre -->
+    <div id="root"><div class="coquille" aria-hidden="true"><img class="coquille-photo" sizes="(min-width: 960px) 900px, (min-width: 640px) 760px, 100vw" alt="" width="1024" height="640" fetchpriority="high" /></div></div>
+    <script src="/couverture.js"></script>
+    <noscript>Mila JavaScript i Tantsaha Connect.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
