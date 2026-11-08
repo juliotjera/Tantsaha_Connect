@@ -6,7 +6,7 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 // Vérification automatique du code (npm run lint)
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'android']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [js.configs.recommended, reactHooks.configs.flat.recommended, reactRefresh.configs.vite],

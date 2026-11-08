@@ -1,6 +1,7 @@
 import { Share2, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useT } from '../i18n'
+import { partageFichierPossible, partagerFichier } from '../natif'
 import { lirePhoto } from '../stockage/photos'
 
 // Miniature de la photo d'une observation ; un appui l'affiche en grand,
@@ -35,7 +36,7 @@ export default function PhotoObservation({ idClient, description }) {
 
   if (!photo) return null
   const fichier = new File([photo.blob], 'tantsaha-sary.jpg', { type: 'image/jpeg' })
-  const partageable = navigator.canShare?.({ files: [fichier] })
+  const partageable = partageFichierPossible(fichier)
 
   return (
     <>
@@ -47,7 +48,7 @@ export default function PhotoObservation({ idClient, description }) {
           <img src={photo.url} alt={description} onClick={(e) => e.stopPropagation()} />
           <div className="visionneuse-actions" onClick={(e) => e.stopPropagation()}>
             {partageable && (
-              <button type="button" className="bouton bouton-neutre" onClick={() => navigator.share({ files: [fichier], text: description }).catch(() => {})}>
+              <button type="button" className="bouton bouton-neutre" onClick={() => partagerFichier(fichier, description)}>
                 <Share2 size={22} aria-hidden="true" /> {t('commun.partager')}
               </button>
             )}

@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BoutonInstaller from '../components/BoutonInstaller'
 import { useT } from '../i18n'
+import { partageFichierPossible, partagerFichier } from '../natif'
 import { annoncer } from '../stockage/annonces'
 import { useMeteo } from '../stockage/meteo'
 import { fichierSauvegarde, importerSauvegarde } from '../stockage/sauvegarde'
@@ -133,8 +134,8 @@ function Tahiry() {
 
   async function exporter() {
     const fichier = await fichierSauvegarde(aujourdhui())
-    if (navigator.canShare?.({ files: [fichier] })) {
-      navigator.share({ files: [fichier], title: fichier.name }).catch(() => {})
+    if (partageFichierPossible(fichier)) {
+      partagerFichier(fichier, fichier.name)
       return
     }
     const lien = document.createElement('a')

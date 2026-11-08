@@ -1,6 +1,7 @@
 import { RefreshCw } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useT } from '../i18n'
+import { natif } from '../natif'
 
 // Installe le service worker (application utilisable hors ligne) et propose
 // d'activer une nouvelle version quand elle est prête. L'utilisateur choisit
@@ -11,7 +12,8 @@ export default function MiseAJour() {
 
   useEffect(() => {
     // seulement la version compilée : en développement, le cache gênerait les modifications
-    if (!import.meta.env.PROD || !('serviceWorker' in navigator)) return
+    // ni dans l'application Android : tout y est déjà, et elle se met à jour par l'APK
+    if (!import.meta.env.PROD || natif || !('serviceWorker' in navigator)) return
 
     let rechargement = false
     const recharger = () => {

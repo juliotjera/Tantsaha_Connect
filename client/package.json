@@ -9,9 +9,17 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:e2e": "npm run build && node e2e/lancer.mjs"
+    "test:e2e": "npm run build && node e2e/lancer.mjs",
+    "build:mobile": "vite build --mode mobile && cap sync android",
+    "android:apk": "npm run build:mobile && cd android && gradlew assembleDebug"
   },
   "dependencies": {
+    "@capacitor-community/text-to-speech": "^8.0.2",
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/filesystem": "^8.1.5",
+    "@capacitor/local-notifications": "^8.3.1",
+    "@capacitor/share": "^8.0.3",
     "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
     "idb": "^8.0.4",
@@ -21,6 +29,8 @@
     "react-router-dom": "^7.18.5"
   },
   "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.0",
     "@eslint/js": "^10.0.1",
     "@vitejs/plugin-react": "^5.2.0",
     "axe-core": "^4.14.0",

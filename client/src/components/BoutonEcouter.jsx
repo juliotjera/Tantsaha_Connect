@@ -1,6 +1,7 @@
 import { Square, Volume2, VolumeX } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useT } from '../i18n'
+import { arreterVoixNatif, natif, parlerNatif } from '../natif'
 
 // Bouton « Henoy » (écouter) : lit un message à voix haute, pour ceux qui
 // ne lisent pas facilement.
@@ -21,8 +22,9 @@ function verifier(id, langue) {
     disponibles.set(
       cle,
       langue === 'fr'
-        ? Promise.resolve('speechSynthesis' in window ? 'synthese' : null)
-        : fetch(`/audio/${id}.mp3`, { method: 'HEAD' })
+        ? Promise.resolve(natif || 'speechSynthesis' in window ? 'synthese' : null)
+        : // dans l'application, les fichiers sont lus depuis l'APK (qui ne répond pas à HEAD)
+          fetch(`/audio/${id}.mp3`, { method: natif ? 'GET' : 'HEAD' })
             // un fichier absent peut renvoyer la page de l'application : on vérifie le type
             .then((r) => r.ok && r.headers.get('content-type')?.startsWith('audio/'))
             .catch(() => false)
@@ -60,6 +62,7 @@ export default function BoutonEcouter({ id, texte, petit = false }) {
   function arreter() {
     audio.current?.pause()
     window.speechSynthesis?.cancel()
+    if (natif) arreterVoixNatif()
     setLecture(false)
     arreterEnCours = null
   }
@@ -76,6 +79,8 @@ export default function BoutonEcouter({ id, texte, petit = false }) {
       audio.current.currentTime = 0
       audio.current.onended = arreter
       audio.current.play().catch(arreter)
+    } else if (natif) {
+      parlerNatif(texte, langue).finally(arreter)
     } else {
       const phrase = new SpeechSynthesisUtterance(texte)
       phrase.voice = voix(langue) ?? null

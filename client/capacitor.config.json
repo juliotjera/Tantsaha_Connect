@@ -1,0 +1,13 @@
+{
+  "appId": "mg.tantsaha.connect",
+  "appName": "Tantsaha Connect",
+  "webDir": "dist",
+  "android": {
+    "backgroundColor": "#1f5c37"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "iconColor": "#1f5c37"
+    }
+  }
+}

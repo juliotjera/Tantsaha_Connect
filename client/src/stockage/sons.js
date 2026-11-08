@@ -1,3 +1,4 @@
+import { natif, parlerNatif } from '../natif'
 import { langueActuelle, sonActif } from './preferences'
 
 // Retour sonore après une action (enregistrer, supprimer) : un petit carillon,
@@ -43,6 +44,8 @@ export function confirmer(action) {
   setTimeout(() => {
     if (langueActuelle() === 'mg') {
       new Audio(`/audio/${mot.fichier}.mp3`).play().catch(() => {})
+    } else if (natif) {
+      parlerNatif(mot.fr, 'fr').catch(() => {})
     } else if ('speechSynthesis' in window) {
       const phrase = new SpeechSynthesisUtterance(mot.fr)
       phrase.lang = 'fr-FR'
