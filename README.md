@@ -4,6 +4,8 @@ Application d'aide à la gestion des cultures et des saisons agricoles pour les 
 météo locale, alertes, journal de culture et conseils agricoles, avec une interface
 compréhensible sans lire de texte, des messages vocaux en malagasy, et **utilisable hors ligne**.
 
+**En ligne : [tantsaha-connect.onrender.com](https://tantsaha-connect.onrender.com)** (Render + PostgreSQL Neon, région Frankfurt).
+
 ## Fonctionnalités
 
 | Rubrique | Ce qu'elle fait |
