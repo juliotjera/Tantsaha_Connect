@@ -2,6 +2,7 @@ import { BellRing, ChevronRight, MapPin, TriangleAlert } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Almanach from '../components/Almanach'
 import BoutonInstaller from '../components/BoutonInstaller'
+import LienAndroid from '../components/LienAndroid'
 import { couvertureDuMois } from '../donnees/photos'
 import { typesObservation } from '../donnees/typesObservation'
 import { useAlertes } from '../hooks/useAlertes'
@@ -56,7 +57,9 @@ export default function Accueil() {
         </div>
       </section>
 
+      {/* installer : l'application Android sur Android, le site ailleurs (une seule carte) */}
       <BoutonInstaller />
+      <LienAndroid accueil />
     </section>
   )
 }

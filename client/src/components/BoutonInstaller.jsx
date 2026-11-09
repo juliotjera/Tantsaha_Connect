@@ -1,13 +1,14 @@
 import { Download } from 'lucide-react'
 import { useT } from '../i18n'
+import { surAndroid } from '../natif'
 import { installer, useInstallable } from '../stockage/installation'
 
-// Bouton « Installer l'application » : visible seulement quand le navigateur
-// permet l'installation (et disparaît une fois l'application installée).
+// Bouton « Installer l'application » (le site comme application) : visible seulement quand le
+// navigateur le permet, et jamais sur Android, où l'application Android (LienAndroid) la remplace.
 export default function BoutonInstaller() {
   const { t } = useT()
   const installable = useInstallable()
-  if (!installable) return null
+  if (!installable || surAndroid()) return null
 
   return (
     <button type="button" className="bouton-installer" onClick={installer}>

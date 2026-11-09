@@ -6,6 +6,13 @@ import { Capacitor } from '@capacitor/core'
 // Les modules natifs ne sont chargés que dans l'application Android.
 export const natif = Capacitor.isNativePlatform()
 
+// Appareil du navigateur : sur Android, on propose l'application Android (APK) ;
+// ailleurs (iPhone, ordinateur), l'installation du site (un APK n'y fonctionne pas)
+const agent = () => (typeof navigator === 'undefined' ? '' : navigator.userAgent)
+export const surAndroid = () => /Android/i.test(agent())
+export const surIOS = () =>
+  /iPhone|iPad|iPod/i.test(agent()) || (typeof navigator !== 'undefined' && navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+
 // --- partage (WhatsApp, SMS, Bluetooth…) ---
 
 export const partagePossible = () => natif || (typeof navigator !== 'undefined' && !!navigator.share)

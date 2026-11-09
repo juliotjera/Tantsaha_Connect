@@ -1,18 +1,20 @@
 import { Download, Smartphone } from 'lucide-react'
 import { useT } from '../i18n'
-import { natif } from '../natif'
+import { natif, surAndroid, surIOS } from '../natif'
 
 // Dernière version de l'application Android, servie par le site lui-même (le serveur la
 // reprend des « Releases » GitHub, voir server/src/app.js) : pas de redirection vers un autre domaine.
 export const ADRESSE_APK = 'https://tantsaha-connect.onrender.com/telecharger/tantsaha-connect.apk'
 
 // Télécharger l'application Android depuis le site (gratuit, sans boutique) :
-// sur un téléphone Android, un bouton ; sur un ordinateur, en plus, le QR code à
-// scanner avec le téléphone. Rien dans l'application Android elle-même.
-export default function LienAndroid() {
+// - téléphone Android : le bouton (seule façon d'installer proposée sur Android) ;
+// - ordinateur : le bouton et le QR code à scanner avec un téléphone Android ;
+// - iPhone, et dans l'application Android elle-même : rien.
+// « accueil » : sur l'accueil, la carte n'apparaît que sur Android (à la place de l'installation du site).
+export default function LienAndroid({ accueil = false }) {
   const { t } = useT()
-  if (natif) return null
-  const android = typeof navigator !== 'undefined' && /Android/i.test(navigator.userAgent)
+  const android = surAndroid()
+  if (natif || surIOS() || (accueil && !android)) return null
 
   return (
     <section className="lien-android" aria-labelledby="lien-android-titre">

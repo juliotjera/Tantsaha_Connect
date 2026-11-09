@@ -2078,7 +2078,8 @@
 
   .accueil > .bienvenue,
   .accueil > .bandeau-alerte,
-  .accueil > .bouton-installer {
+  .accueil > .bouton-installer,
+  .accueil > .lien-android {
     grid-column: 1 / -1;
   }
 
