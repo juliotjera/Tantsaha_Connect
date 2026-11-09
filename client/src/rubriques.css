@@ -2676,7 +2676,7 @@
 .coquille {
   max-width: var(--largeur-max);
   margin: 0 auto;
-  padding: calc(var(--hauteur-entete) + 16px) 16px 0;
+  padding: calc(var(--hauteur-entete) + env(safe-area-inset-top, 0px) + 16px) 16px 0;
 }
 
 .coquille-photo {

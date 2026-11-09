@@ -266,8 +266,10 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
-  height: var(--hauteur-entete);
-  padding: 0 12px;
+  /* application Android (bord à bord) : l'en-tête passe sous la barre d'état du téléphone,
+     on ajoute sa hauteur (0 dans un navigateur ordinaire) */
+  height: calc(var(--hauteur-entete) + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) max(12px, env(safe-area-inset-right, 0px)) 0 max(12px, env(safe-area-inset-left, 0px));
   background: color-mix(in srgb, var(--fond) 88%, transparent);
   backdrop-filter: blur(12px);
   color: var(--texte);
