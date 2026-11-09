@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import LienAndroid from '../components/LienAndroid'
 import { photos } from '../donnees/photos'
 import { useT } from '../i18n'
 
@@ -31,11 +33,18 @@ const TEXTES = {
 }
 
 export default function APropos() {
-  const { langue } = useT()
+  const { t, langue } = useT()
   const T = TEXTES[langue]
   return (
     <section className="apropos">
       <p>{T.intro}</p>
+      <p>
+        <Link to="/mombamomba/tsiambaratelo" viewTransition>
+          {t('apropos.confidentialite')}
+        </Link>
+      </p>
+
+      <LienAndroid />
 
       <h2>{T.photos}</h2>
       <p>{T.photosNote}</p>

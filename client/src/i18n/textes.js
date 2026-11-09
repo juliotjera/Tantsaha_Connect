@@ -8,6 +8,21 @@ export const textes = {
   'commun.retourVers': { mg: 'Hiverina : {nom}', fr: 'Retour : {nom}' },
   'commun.fermer': { mg: 'Hidio', fr: 'Fermer' },
   'commun.annuler': { mg: 'Averina', fr: 'Annuler' },
+  'android.titre': { mg: 'Fampiharana Android', fr: 'Application Android' },
+  'android.detail': {
+    mg: "Apetraho ao amin'ny finday Android : mandeha na tsy misy internet aza, miaraka amin'ny fizarana sy ny fampandrenesana.",
+    fr: 'Installez-la sur un téléphone Android : elle marche sans internet, avec le partage et les notifications.',
+  },
+  'android.telecharger': { mg: 'Alaivo ny fampiharana', fr: "Télécharger l'application" },
+  'android.aide': {
+    mg: "Raha mangataka ny finday, avelao ny fametrahana avy amin'ity loharano ity.",
+    fr: "Si le téléphone le demande, autorisez l'installation depuis cette source.",
+  },
+  'android.qr': {
+    mg: "QR code : saro amin'ny finday Android mba haka ny fampiharana",
+    fr: "QR code : scannez-le avec un téléphone Android pour télécharger l'application",
+  },
+  'apropos.confidentialite': { mg: 'Fiarovana ny angona', fr: 'Confidentialité' },
   'commun.partager': { mg: 'Zarao', fr: 'Partager' },
 
   // --- petit guide du premier usage ---

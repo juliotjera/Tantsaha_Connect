@@ -50,7 +50,15 @@ export const rubriques = [
 // Écrans hors navigation principale, avec un en-tête et un bouton de retour
 export const pagesAnnexes = [
   { id: 'fikirana', chemin: '/fikirana', Icone: Settings, nom: 'Fikirana', nomFr: 'Paramètres', couleur: '#1f5c37' },
-  { id: 'apropos', chemin: '/mombamomba', Icone: Info, nom: 'Mombamomba', nomFr: 'À propos', couleur: '#1f5c37' },
+  {
+    id: 'apropos',
+    chemin: '/mombamomba',
+    Icone: Info,
+    nom: 'Mombamomba',
+    nomFr: 'À propos',
+    couleur: '#1f5c37',
+    sousEcrans: { '/mombamomba/tsiambaratelo': { nom: 'Fiarovana ny angona', nomFr: 'Confidentialité' } },
+  },
 ]
 
 // Rubrique (ou écran annexe) de l'adresse en cours : sert au titre de l'en-tête

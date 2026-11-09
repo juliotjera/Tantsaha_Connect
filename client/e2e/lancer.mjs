@@ -203,7 +203,7 @@ try {
   })
 
   console.log('\nAccessibilité (WCAG 2.1 AA, axe-core)')
-  const ecrans = ['/', '/meteo', '/alertes', '/journal', '/journal/vaovao', '/journal/tatitra', '/conseils', '/fikirana', '/mombamomba']
+  const ecrans = ['/', '/meteo', '/alertes', '/journal', '/journal/vaovao', '/journal/tatitra', '/conseils', '/fikirana', '/mombamomba', '/mombamomba/tsiambaratelo']
   for (const [langue, theme] of [['mg', 'clair'], ['fr', 'clair'], ['mg', 'sombre'], ['mg', 'soleil']]) {
     const sombre = theme !== 'clair' && theme // nom du mode, pour les messages
     await etape(`${ecrans.length} écrans, ${langue}${sombre ? `, mode ${sombre}` : ''}`, async () => {

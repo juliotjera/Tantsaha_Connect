@@ -3369,3 +3369,61 @@
   align-items: center;
   gap: 12px;
 }
+
+/* ---------- télécharger l'application Android (site seulement) ---------- */
+.lien-android {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 20px;
+  padding: 16px;
+  border-radius: var(--rayon);
+  background: var(--surface);
+  box-shadow: var(--ombre);
+}
+
+.lien-android-texte {
+  display: flex;
+  flex: 1 1 240px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.lien-android h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--police-titre);
+  font-size: var(--taille-l);
+  font-weight: 650;
+}
+
+.lien-android h2 svg {
+  color: var(--marque-texte);
+}
+
+.lien-android p {
+  margin: 0;
+}
+
+.lien-android .bouton {
+  text-decoration: none;
+}
+
+.lien-android-aide {
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+}
+
+.lien-android-qr {
+  flex: none;
+  border-radius: var(--rayon-s);
+  box-shadow: var(--ombre-1);
+}
+
+.apropos-maj {
+  color: var(--texte-doux);
+  font-size: var(--taille-s);
+}

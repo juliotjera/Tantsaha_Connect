@@ -2,6 +2,7 @@ import { ALargeSmall, BellRing, ChevronRight, Compass, Download, FolderArchive, 
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BoutonInstaller from '../components/BoutonInstaller'
+import LienAndroid from '../components/LienAndroid'
 import { useT } from '../i18n'
 import { partageFichierPossible, partagerFichier } from '../natif'
 import { annoncer } from '../stockage/annonces'
@@ -101,6 +102,7 @@ export default function Fikirana() {
       />
 
       <BoutonInstaller />
+      <LienAndroid />
 
       <Tahiry />
 

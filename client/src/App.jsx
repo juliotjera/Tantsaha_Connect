@@ -24,6 +24,7 @@ const Torolalana = lazy(() => import('./components/Torolalana'))
 const Alertes = lazy(() => import('./pages/Alertes'))
 const APropos = lazy(() => import('./pages/APropos'))
 const Bilan = lazy(() => import('./pages/Bilan'))
+const Confidentialite = lazy(() => import('./pages/Confidentialite'))
 const Conseils = lazy(() => import('./pages/Conseils'))
 const Fikirana = lazy(() => import('./pages/Fikirana'))
 const Journal = lazy(() => import('./pages/Journal'))
@@ -67,6 +68,7 @@ function App() {
               <Route path="/conseils" element={<Conseils />} />
               <Route path="/fikirana" element={<Fikirana />} />
               <Route path="/mombamomba" element={<APropos />} />
+              <Route path="/mombamomba/tsiambaratelo" element={<Confidentialite />} />
               {/* adresse inconnue : retour à l'accueil plutôt qu'une page d'erreur */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
