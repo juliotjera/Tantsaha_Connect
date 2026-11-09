@@ -1,4 +1,5 @@
 import { existsSync } from 'node:fs'
+import { Readable } from 'node:stream'
 import { extname, join } from 'node:path'
 import compression from 'compression'
 import cors from 'cors'
@@ -46,6 +47,35 @@ app.use(
 )
 app.use('/api', routes)
 app.use('/api', routeIntrouvable)      // 404 en JSON pour une route d'API inconnue
+
+// Application Android : servie depuis le site lui-même. Le serveur récupère la dernière
+// version publiée sur GitHub et la transmet telle quelle : le téléphone télécharge depuis
+// une seule adresse, sans redirection vers un autre domaine (que le navigateur intégré de
+// WhatsApp ou l'application installée gèrent mal : téléchargement bloqué « en cours »).
+export const SOURCE_APK = 'https://github.com/juliotjera/Tantsaha_Connect/releases/latest/download/tantsaha-connect.apk'
+app.get('/telecharger/tantsaha-connect.apk', async (req, res) => {
+  try {
+    // délai pour joindre GitHub seulement : le transfert lui-même peut être long (réseau lent)
+    const arret = new AbortController()
+    const delai = setTimeout(() => arret.abort(), 30000)
+    const source = await fetch(SOURCE_APK, { signal: arret.signal }).finally(() => clearTimeout(delai))
+    if (!source.ok || !source.body) return res.status(502).json({ erreur: 'Application Android indisponible pour le moment' })
+    res.set({
+      'Content-Type': 'application/vnd.android.package-archive',
+      'Content-Disposition': 'attachment; filename="tantsaha-connect.apk"',
+      'Cache-Control': 'no-cache',
+    })
+    const taille = source.headers.get('content-length')
+    if (taille) res.set('Content-Length', taille)
+    const flux = Readable.fromWeb(source.body)
+    flux.on('error', () => res.destroy()) // coupure côté GitHub : le téléphone pourra réessayer
+    req.on('close', () => flux.destroy()) // téléchargement annulé par le téléphone
+    flux.pipe(res)
+  } catch {
+    // GitHub injoignable : message clair plutôt qu'une erreur 500
+    if (!res.headersSent) res.status(502).json({ erreur: 'Application Android indisponible pour le moment' })
+  }
+})
 
 // En production, l'API sert aussi l'interface React compilée (un seul service à héberger).
 // Toute adresse inconnue renvoie index.html : c'est React Router qui choisit l'écran.

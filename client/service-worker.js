@@ -66,7 +66,8 @@ self.addEventListener('message', (evenement) => {
 self.addEventListener('fetch', (evenement) => {
   const { request } = evenement
   const url = new URL(request.url)
-  if (url.origin !== self.location.origin || url.pathname.startsWith('/api/')) return
+  // API et téléchargement de l'application Android : toujours le réseau, jamais le service worker
+  if (url.origin !== self.location.origin || url.pathname.startsWith('/api/') || url.pathname.startsWith('/telecharger/')) return
   if (request.method !== 'GET' && request.method !== 'HEAD') return
 
   // navigation vers un écran : la page de l'application, depuis le cache

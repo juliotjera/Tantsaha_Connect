@@ -62,8 +62,8 @@ Résultat dans `client\android\sortie\` :
 3. Glisser `tantsaha-connect.apk` dans la zone des fichiers (le nom doit rester **exactement** celui-ci).
 4. **Publish release**.
 
-Le lien du site pointe toujours vers la dernière version :
-https://github.com/juliotjera/Tantsaha_Connect/releases/latest/download/tantsaha-connect.apk
+Le site sert toujours la dernière version publiée, depuis sa propre adresse (sans redirection) :
+https://tantsaha-connect.onrender.com/telecharger/tantsaha-connect.apk
 
 ## 4. Mettre à jour l'application
 

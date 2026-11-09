@@ -2,9 +2,9 @@ import { Download, Smartphone } from 'lucide-react'
 import { useT } from '../i18n'
 import { natif } from '../natif'
 
-// Lien stable vers la dernière version de l'application Android, publiée dans les
-// « Releases » GitHub du projet (fichier toujours nommé tantsaha-connect.apk).
-export const ADRESSE_APK = 'https://github.com/juliotjera/Tantsaha_Connect/releases/latest/download/tantsaha-connect.apk'
+// Dernière version de l'application Android, servie par le site lui-même (le serveur la
+// reprend des « Releases » GitHub, voir server/src/app.js) : pas de redirection vers un autre domaine.
+export const ADRESSE_APK = 'https://tantsaha-connect.onrender.com/telecharger/tantsaha-connect.apk'
 
 // Télécharger l'application Android depuis le site (gratuit, sans boutique) :
 // sur un téléphone Android, un bouton ; sur un ordinateur, en plus, le QR code à
@@ -21,7 +21,7 @@ export default function LienAndroid() {
           <Smartphone size={22} strokeWidth={2.4} aria-hidden="true" /> {t('android.titre')}
         </h2>
         <p>{t('android.detail')}</p>
-        <a className="bouton bouton-valider" href={ADRESSE_APK}>
+        <a className="bouton bouton-valider" href={ADRESSE_APK} download="tantsaha-connect.apk">
           <Download size={24} strokeWidth={2.6} aria-hidden="true" /> {t('android.telecharger')}
         </a>
         <p className="lien-android-aide">{t('android.aide')}</p>
